@@ -1,6 +1,6 @@
 
 
-import  NftGrid from "./components/NftGrid";
+import  NftCard from "./components/NftCard";
 
 
 
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <NftGrid />
+      <NftCard />
     </div>
   )
 }

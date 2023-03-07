@@ -6,7 +6,7 @@ import axios from "axios";
 const baseURL = import.meta.env.VITE_APP_BASEURL;
 const ownerAddress = import.meta.env.VITE_APP_OWNER_ADDRESS;
 
-const NftGrid = () => {
+const NftCard = () => {
   const [nfts, setNfts] = useState([]);
   const [selectedNft, setSelectedNft] = useState(null);
 
@@ -15,7 +15,7 @@ const NftGrid = () => {
       const response = await axios.get(`${baseURL}?owner=${ownerAddress}`);
       const data = response.data;
       setNfts(data.ownedNfts);
-      console.log(data);
+     
     };
     fetchNfts();
   }, []);
@@ -38,7 +38,7 @@ const NftGrid = () => {
   return (
     <>
       <h1 className="title">NFTs listing</h1>
-      <div class="container">
+      <div className="container">
         {nfts.map((nft, index) => (
           <div className="card" onClick={() => handleNftClick(nft)} key={index}>
             <div className="card-img">
@@ -101,4 +101,4 @@ const NftGrid = () => {
   );
 };
 
-export default NftGrid;
+export default NftCard;
