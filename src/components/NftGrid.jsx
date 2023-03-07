@@ -37,7 +37,13 @@ const NftGrid = () => {
     window.open(nft.permalink);
   };
 
-
+  const checkips = (imageurl) => {
+    if (imageurl) {
+      return imageurl.replace("ipfs://", "https://ipfs.io/ipfs/");
+    } else {
+      return imageurl;
+    }
+  };
 
   return (
     <>
@@ -48,16 +54,15 @@ const NftGrid = () => {
           <div className="card" onClick={() => handleNftClick(nft)} key={index}>
             <div className="card-img">
               <img
-                src={checkips(nft?.metadata?.image)}
-                alt={nft.contractMetadata
-                    .name}
+                src={checkips(nft?.contractMetadata.openSea?.imageUrl)}
+                alt={nft.contractMetadata.openSea.collectionName}
                 className="card-img"
               />
             </div>
             <div className="desc">
-              <h3>{nft.metadata.name}</h3>
+              <h3>{nft.contractMetadata.openSea.collectionName}</h3>
               <p>
-                {nft.metadata.description && nft.metadata.description.split(" ").splice(0, 30).join(" ")}
+                {nft.contractMetadata.openSea.description && nft.contractMetadata.openSea.description.split(" ").splice(0, 30).join(" ")}
               </p>
               {/* <div class="detail">
                                 <div class="coin">
