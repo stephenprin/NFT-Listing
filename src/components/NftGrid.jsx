@@ -20,10 +20,7 @@ const NftGrid = () => {
     };
     fetchNfts();
   }, []);
-  console.log(nfts);
-  // useEffect(() => {
-  //     setNfts(NftsData);
-  //  }, [address]);
+ 
 
   const handleNftClick = (nft) => {
     setSelectedNft(nft);
@@ -34,7 +31,7 @@ const NftGrid = () => {
   };
 
   const handlePurchaseClick = (nft) => {
-    window.open(nft.permalink);
+    window.open(nft.contractMetadata.openSea.externalUrl);
   };
 
   const checkips = (imageurl) => {
@@ -62,25 +59,19 @@ const NftGrid = () => {
             <div className="desc">
               <h3>{nft.contractMetadata.openSea.collectionName}</h3>
               <p>
-                {nft.contractMetadata.openSea.description && nft.contractMetadata.openSea.description.split(" ").splice(0, 30).join(" ")}
+                {nft.contractMetadata.openSea.description && nft.contractMetadata.openSea.description.split(" ").splice(0, 30).join(" ") || "Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Pellentesque i"}
               </p>
-              {/* <div class="detail">
+                            <div class="detail">
                                 <div class="coin">
-                                    <img src="./images/icon-ethereum.svg" id="loading">
-                                    <p>$</p>
+                                    <img src={nft.contractMetadata.openSea.imageUrl}  alt={nft.contractMetadata.openSea.collectionName} id="loading"/>
+                                  <p>{ nft.contractMetadata.openSea.floorPrice}</p>
                                 </div>
-                                <div class="day-detail">
-                                    <img src="./images/icon-clock.svg">
-                                    <p>3 days left</p>
+                              <div class="day-detail">
+                                    <p>{nft.contractMetadata.tokenType}</p>
                                 </div>
-                            </div> */}
+                            </div>
               <div className="line"></div>
-              {/* <div class="profile">
-                                <div class="profile-img">
-                                    <img src="./images/image-avatar.png">
-                                </div>
-                                <P>Creation of Prince Nmezi</P>
-                            </div> */}
+              
             </div>
           </div>
         ))}
@@ -90,16 +81,16 @@ const NftGrid = () => {
         <Modal handleClose={handleModalClose}>
           <div className="nft-details">
             <img
-              src={selectedNft.metadata.image}
-              alt={selectedNft.metadata.name}
+              src={selectedNft.contractMetadata.openSea.imageUrl}
+              alt={selectedNft.contractMetadata.openSea.collectionName}              
             />
-            <h2>{selectedNft.metadata.name}</h2>
-            <p>Description: {selectedNft.metadata.description}</p>
+            <h2>{selectedNft.contractMetadata.openSea.collectionName}</h2>
+            <p>Description: {selectedNft.contractMetadata.openSea.description}</p>
             <p className="owner_address">
               <span>Owner Address</span>: {selectedNft.contract.address}
             </p>
             <button onClick={() => handlePurchaseClick(selectedNft)}>
-              Buy on OpenSea
+              Purchase NFT
             </button>
           </div>
         </Modal>
