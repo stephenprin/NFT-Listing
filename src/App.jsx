@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Modal from "./Modal";
 
-import './App.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <div className="App">
-      
+      ggg
     </div>
   )
 }
