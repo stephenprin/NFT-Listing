@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Modal from "./Modal";
+
+import  NftGrid from "./components/NftGrid";
 
 
 
 function App() {
-  
+
 
   return (
-    <div className="App">
-      ggg
+    <div>
+      <NftGrid />
     </div>
   )
 }
